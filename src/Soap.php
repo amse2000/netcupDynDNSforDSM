@@ -46,64 +46,9 @@ class DomainWebserviceSoapClient{
 	}
 
 	/**
-	 * Create a new domain for a fee.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param domainname $domainname Name of the domain including top-level domain.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param Contactentries $contacts Ids of the contact handles registered previously. Format like this: $assignedhandletypes_obj = new Contactentries(); $assignedhandletypes_obj->ownerc = 111; $assignedhandletypes_obj->adminc = 222;
-	 * @param Nameserverentries $nameservers object of nameservers. Please define as object in format for example: $nameservers = new Nameserverentries(); $nameserverentry1 = new Nameserverentry(); $nameserverentry1->hostname = "ns1.nameserverdomain.de"; $nameserverentry1->ipv4 = "12.34.56.78"; $nameserverentry1->ipv6 = "123:0000:4:5600::8"; $nameservers->nameserver1 = $nameserverentry1;  $nameserverentry2 = new Nameserverentry(); $nameserverentry2->hostname = "ns2.nameserverdomain.de"; $nameserverentry2->ipv4 = "12.34.56.178"; $nameserverentry2->ipv6 = "123:0000:4:5600::7"; $nameservers->nameserver2 = $nameserverentry2;
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function createDomain($domainname,$customernumber,$contacts,$nameservers,$apikey,$apisessionid,$clientrequestid){
-		return self::_Call('createDomain', func_get_args());
-	}
-
-	/**
-	 * Update a domain contacts and nameserver settings.
-	 * For updateing owner handle use changeOwnerDomain.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param domainname $domainname Name of the domain including top-level domain.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param Contactentries $contacts Ids of the contact handles registered previously.
-	 * @param Nameserverentries $nameservers object of nameservers. Please define as object in format for example: $nameservers = new Nameserverentries(); $nameserverentry1 = new Nameserverentry(); $nameserverentry1->hostname = "ns1.nameserverdomain.de"; $nameserverentry1->ipv4 = "12.34.56.78"; $nameserverentry1->ipv6 = "123:0000:4:5600::8"; $nameservers->nameserver1 = $nameserverentry1;  $nameserverentry2 = new Nameserverentry(); $nameserverentry2->hostname = "ns2.nameserverdomain.de"; $nameserverentry2->ipv4 = "12.34.56.178"; $nameserverentry2->ipv6 = "123:0000:4:5600::7"; $nameservers->nameserver2 = $nameserverentry2;
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @param keepdnssecrecords $keepdnssecrecords TRUE Saved DNSSEC records will be preserved|keepdnssecrecords FALSE Saved DNSSEC records will be deleted. Information is only relevant if you use DNSSEC. Field is optional. Default FALSE.
-	 * @param DnssecentriesObject $dnssecentries DNSSEC entries for a domain Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function updateDomain($domainname,$customernumber,$contacts,$nameservers,$apikey,$apisessionid,$clientrequestid,$keepdnssecrecords,$dnssecentries){
-		return self::_Call('updateDomain', func_get_args());
-	}
-
-	/**
-	 * Incomming transfer a new domain for a fee.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param domainname $domainname Name of the domain including top-level domain.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param Contactentries $contacts Ids of the contact handles registered previously. Format like this: $assignedhandletypes_obj = new Contactentries(); $assignedhandletypes_obj->ownerc = 111; $assignedhandletypes_obj->adminc = 222;
-	 * @param Nameserverentries $nameservers object of nameservers. Please define as object in format for example: $nameservers = new Nameserverentries(); $nameserverentry1 = new Nameserverentry(); $nameserverentry1->hostname = "ns1.nameserverdomain.de"; $nameserverentry1->ipv4 = "12.34.56.78"; $nameserverentry1->ipv6 = "123:0000:4:5600::8"; $nameservers->nameserver1 = $nameserverentry1;  $nameserverentry2 = new Nameserverentry(); $nameserverentry2->hostname = "ns2.nameserverdomain.de"; $nameserverentry2->ipv4 = "12.34.56.178"; $nameserverentry2->ipv6 = "123:0000:4:5600::7"; $nameservers->nameserver2 = $nameserverentry2;
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param string $authcode AuthInfo code for this domain.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function transferDomain($domainname,$customernumber,$contacts,$nameservers,$apikey,$apisessionid,$authcode,$clientrequestid){
-		return self::_Call('transferDomain', func_get_args());
-	}
-
-	/**
 	 * End session for API user.
 	 * A login has to be send before each request.
-	 * This function is avaliable for domain resellers.
+	 * This function is avaliable for domain resellers and in the "Simple DNS-API".
 	 *
 	 * @param positiveInteger $customernumber customer number of reseller at netcup.
 	 * @param string $apikey Unique API key generated in customer control panel.
@@ -118,7 +63,7 @@ class DomainWebserviceSoapClient{
 	/**
 	 * Create a login session for API users.
 	 * A login has to be send before each request.
-	 * This function is avaliable for domain resellers.
+	 * This function is avaliable for domain resellers and in the "Simple DNS-API".
 	 *
 	 * @param positiveInteger $customernumber customer number of reseller at netcup.
 	 * @param string $apikey Unique API key generated in customer control panel.
@@ -131,231 +76,9 @@ class DomainWebserviceSoapClient{
 	}
 
 	/**
-	 * Get all messages that are not read.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param positiveInteger $messagecount maximum number of unread messages to receive.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc. In responsedata field: ArrayOPollObject Unread Messages for this customer.
-	 */
-	public function poll($messagecount,$customernumber,$apikey,$apisessionid,$clientrequestid){
-		return self::_Call('poll', func_get_args());
-	}
-
-	/**
-	 * Acknowledge log message from call made via API.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param positiveInteger $apilogid ID of message to mark as read.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function ackpoll($apilogid,$customernumber,$apikey,$apisessionid,$clientrequestid){
-		return self::_Call('ackpoll', func_get_args());
-	}
-
-	/**
-	 * Change Ownerhandle. Current Owner has to allow or deny the ownerchange by clicking a link that is sent to him via e-mail.
-	 * Process ends after 5 days if not answered.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param integer $new_handle_id Handle ID of the contact that should be the new owner.
-	 * @param domainname $domainname Name of the domain including top-level domain.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function changeOwnerDomain($new_handle_id,$domainname,$customernumber,$apikey,$apisessionid,$clientrequestid){
-		return self::_Call('changeOwnerDomain', func_get_args());
-	}
-
-	/**
-	 * Cancel Domain. Current Owner has to allow or deny the termination by clicking a link that is sent to him via e-mail.
-	 * Process ends after 5 days if not answered.
-	 * Inclusive domains that were ordered with a hosting product have to be canceled with this product.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param domainname $domainname Name of the domain including top-level domain.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function cancelDomain($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid){
-		return self::_Call('cancelDomain', func_get_args());
-	}
-
-	/**
-	 * Info Domain. Get Information about domain. All avaliable information for own domains. Status for other domains.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param domainname $domainname Name of the domain including top-level domain.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @param registryinformationflag $registryinformationflag TRUE getinformation from registry (may be limited)|registryinformationflag FALSE get information from netcup data base only.  Field is optional. Default FALSE.
-	 * @return Responsemessage $responsemessage Responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function infoDomain($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid,$registryinformationflag){
-		return self::_Call('infoDomain', func_get_args());
-	}
-
-	/**
-	 * Get auth info for domain.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param domainname $domainname Name of the domain including top-level domain.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function getAuthcodeDomain($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid){
-		return self::_Call('getAuthcodeDomain', func_get_args());
-	}
-
-	/**
-	 * Get Information about a handle.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param positiveInteger $handle_id Id of the contact
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function infoHandle($handle_id,$customernumber,$apikey,$apisessionid,$clientrequestid){
-		return self::_Call('infoHandle', func_get_args());
-	}
-
-	/**
-	 * Get ids and name of all handles of a user. If Organisation is set, also value of organisation field.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function listallHandle($customernumber,$apikey,$apisessionid,$clientrequestid){
-		return self::_Call('listallHandle', func_get_args());
-	}
-
-	/**
-	 * Delete a contact handle in data base.
-	 * You can only delete a handle in the netcup database, if it is not used with a domain.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param positiveInteger $handle_id Id of the contact.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function deleteHandle($handle_id,$customernumber,$apikey,$apisessionid,$clientrequestid){
-		return self::_Call('deleteHandle', func_get_args());
-	}
-
-	/**
-	 * Update a existing contact handle in data base and at registries where it is used.
-	 * Handle is created at a registry as soon as it is used.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param positiveInteger $handle_id Id of the contact that will be updated.
-	 * @param handletyp $type type of the handle like organisation or person
-	 * @param max80chars $name full name of the contact.
-	 * @param organisation $organisation organisation like company name.
-	 * @param max63chars $street street
-	 * @param max12chars $postalcode postcode
-	 * @param max63chars $city city
-	 * @param countrycode2char $countrycode countrycode in ISO 3166 ALPHA-2 format. 2 char codes like CH for Switzerland.
-	 * @param telephone $telephone telephone number
-	 * @param email $email email address
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @param ArrayOfOptionalhandleattributes $optionalhandleattributes Optional handle attributes as array of Optionalhandleattribute. Please define in format for example: $optionalhandleattribute = new Optionalhandleattribute(); $optionalhandleattribute->item = 'state'; $optionalhandleattribute->value = utf8_encode("Bayern"); $optionalhandleattributes[] = $optionalhandleattribute; $optionalhandleattribute = new Optionalhandleattribute(); $optionalhandleattribute->item = 'handlecomment'; $optionalhandleattribute->value = utf8_encode("Important customer"); $optionalhandleattributes[] = $optionalhandleattribute; Possible values are: "fax" fax number in format +49.12345678, "state" max40chars state for example Sachsen, "handlecomment" max80chars comment for the handle. Value will not be transfered to any registry., "birthdate" dateformatyyyymmdd date of birth in format YYYY-MM-DD, "birthplace" max70chars place of birth, "birthcountrycountrycode" countrycode2char country of birth, "birthstate" max63chars state of birth, "birthplacepostalcode" max12chars place of the postcode, "registrationnumber" max70chars registernumber, "idcardnumber" max70chars passportnumber, "idcardissuedate" dateformatyyyymmdd passport date of issue in format YYYY-MM-DD, "idcardissueauthority" max70chars passport issuing authority, "taxnumber" max70chars tax number, "vatnumber" max70chars sales tax number, "aeroensid" max70chars aeroensid mandatory for .aero domains, "aeroenspassword" max70chars aeroenspassword mandatory for .aero domains, "xxxmemberid" max20chars xxxmemberid mandatory for .xxx domains, "xxxmemberpasswort" max20chars xxxmemberpasswort mandatory for .xxx domains, "proprofession" max70chars profession mandatory for .pro domains, "traveluin" max20chars traveluin mandatory for .travel domains, "trademarknumber" max80chars brandnumber, "trademarkcountrycode" countrycode2char registry place of the brand, "coopverificationcode" max20chars coopverificationcode, "asiatypeofentity" asiatypeofentity type of legal peronality mandatory for .asia domains. Allowed values are: naturalPerson, corporation, cooperative, partnership, government, politicalParty, society, institution, "asiaformofidentity" asiaformofidentity form of identity mandatory for .asia domains Allowed values are: certificate, legislation, passport, politicalPartyRegistry, societyRegistry, "asiaidentnumber" max255chars identificationnumber mandatory for .asia domains, "jobstitelposition" max70chars title or position mandatory for .jobs domains, "jobswebsite" url URL of website mandatory for .jobs domains, "jobsindustrytype" max128chars type of company mandatory for .jobs domains, "jobscontactisadmin" yesno Yes or No mandatory for .jobs domains, "jobsassociationmember" yesno Yes or No mandatory for .jobs domains, "esnumbertype" esnumbertype NIF/NIE/DNI-number type mandatory for .es domains, "esnifnienumber" max70chars NIF/NIE/DNI-number mandatory for .es domains
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function updateHandle($customernumber,$apikey,$apisessionid,$handle_id,$type,$name,$organisation,$street,$postalcode,$city,$countrycode,$telephone,$email,$clientrequestid,$optionalhandleattributes){
-		return self::_Call('updateHandle', func_get_args());
-	}
-
-	/**
-	 * Create a contact handle in data base. Contact handles are mandatory for ordering domains.
-	 * Fields type, name and organisation can not be changed by an update.
-	 * Field email can not be changed if domain is used at a global top-level domain.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param handletyp $type type of the handle like organisation or person
-	 * @param max80chars $name full name of the contact.
-	 * @param organisation $organisation organisation like company name.
-	 * @param max63chars $street street
-	 * @param max12chars $postalcode postal code
-	 * @param max63chars $city city
-	 * @param countrycode2char $countrycode countrycode in ISO 3166 ALPHA-2 format. 2 char codes like CH for Switzerland.
-	 * @param telephone $telephone telephone number
-	 * @param email $email email address
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @param ArrayOfOptionalhandleattributes $optionalhandleattributes Optional handle attributes as array of Optionalhandleattribute. Please define in format for example: $optionalhandleattribute = new Optionalhandleattribute(); $optionalhandleattribute->item = 'state'; $optionalhandleattribute->value = utf8_encode("Bayern"); $optionalhandleattributes[] = $optionalhandleattribute; $optionalhandleattribute = new Optionalhandleattribute(); $optionalhandleattribute->item = 'handlecomment'; $optionalhandleattribute->value = utf8_encode("Important customer"); $optionalhandleattributes[] = $optionalhandleattribute; Possible values are: "fax" fax number in format +49.12345678, "state" max40chars state for example Sachsen, "handlecomment" max80chars comment for the handle. Value will not be transfered to any registry., "birthdate" dateformatyyyymmdd date of birth in format YYYY-MM-DD, "birthplace" max70chars place of birth, "birthcountrycountrycode" countrycode2char country of birth, "birthstate" max63chars state of birth, "birthplacepostalcode" max12chars place of the postcode, "registrationnumber" max70chars registernumber, "idcardnumber" max70chars passportnumber, "idcardissuedate" dateformatyyyymmdd passport date of issue in format YYYY-MM-DD, "idcardissueauthority" max70chars passport issuing authority, "taxnumber" max70chars tax number, "vatnumber" max70chars sales tax number, "aeroensid" max70chars aeroensid mandatory for .aero domains, "aeroenspassword" max70chars aeroenspassword mandatory for .aero domains, "xxxmemberid" max20chars xxxmemberid mandatory for .xxx domains, "xxxmemberpasswort" max20chars xxxmemberpasswort mandatory for .xxx domains, "proprofession" max70chars profession mandatory for .pro domains, "traveluin" max20chars traveluin mandatory for .travel domains, "trademarknumber" max80chars brandnumber, "trademarkcountrycode" countrycode2char registry place of the brand, "coopverificationcode" max20chars coopverificationcode, "asiatypeofentity" asiatypeofentity type of legal peronality mandatory for .asia domains. Allowed values are: naturalPerson, corporation, cooperative, partnership, government, politicalParty, society, institution, "asiaformofidentity" asiaformofidentity form of identity mandatory for .asia domains Allowed values are: certificate, legislation, passport, politicalPartyRegistry, societyRegistry, "asiaidentnumber" max255chars identificationnumber mandatory for .asia domains, "jobstitelposition" max70chars title or position mandatory for .jobs domains, "jobswebsite" url URL of website mandatory for .jobs domains, "jobsindustrytype" max128chars type of company mandatory for .jobs domains, "jobscontactisadmin" yesno Yes or No mandatory for .jobs domains, "jobsassociationmember" yesno Yes or No mandatory for .jobs domains, "esnumbertype" esnumbertype NIF/NIE/DNI-number type mandatory for .es domains, "esnifnienumber" max70chars NIF/NIE/DNI-number mandatory for .es domains
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function createHandle($customernumber,$apikey,$apisessionid,$type,$name,$organisation,$street,$postalcode,$city,$countrycode,$telephone,$email,$clientrequestid,$optionalhandleattributes){
-		return self::_Call('createHandle', func_get_args());
-	}
-
-	/**
-	 * Get information about all domains that a customer owns. For detailed information please use infoDomain
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc. Contains DomainObject objects in responsedata field.
-	 */
-	public function listallDomains($customernumber,$apikey,$apisessionid,$clientrequestid){
-		return self::_Call('listallDomains', func_get_args());
-	}
-
-	/**
-	 * Get price for a top-level domain.
-	 * Current discounts are considered, but can be limited by time or amount.
-	 * Prices for premium domains can be higher.
-	 * This function is avaliable for domain resellers.
-	 *
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param topleveldomain $topleveldomain Name of the top-level domain without dot. For example de.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc. Contains TopleveldomainObject objects in responsedata field.
-	 */
-	public function priceTopleveldomain($customernumber,$apikey,$apisessionid,$topleveldomain,$clientrequestid){
-		return self::_Call('priceTopleveldomain', func_get_args());
-	}
-
-	/**
 	 * Get all records of a zone.
 	 * Zone must be owned by customer.
+	 * This function is avaliable for domain resellers and in the "Simple DNS-API".
 	 *
 	 * @param domainname $domainname Name of the domain including top-level domain.
 	 * @param positiveInteger $customernumber customer number of reseller at netcup.
@@ -371,6 +94,7 @@ class DomainWebserviceSoapClient{
 	/**
 	 * Update DNS records of a zone. Deletion of other records is optional.
 	 * When DNSSEC is active, the zone is updated in the nameserver with zone resign after a few minutes.
+	 * This function is avaliable for domain resellers and in the "Simple DNS-API".
 	 *
 	 * @param domainname $domainname Name of the domain including top-level domain.
 	 * @param positiveInteger $customernumber customer number of reseller at netcup.
@@ -382,37 +106,6 @@ class DomainWebserviceSoapClient{
 	 */
 	public function updateDnsRecords($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid,$dnsrecordset){
 		return self::_Call('updateDnsRecords', func_get_args());
-	}
-
-	/**
-	 * Update DNS zone.
-	 * When DNSSEC is active, the zone is updated in the nameserver with zone resign after a few minutes.
-	 *
-	 * @param domainname $domainname Name of the domain including top-level domain.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @param Dnszone $dnszone Object that contains settings for DNS zone.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function updateDnsZone($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid,$dnszone){
-		return self::_Call('updateDnsZone', func_get_args());
-	}
-
-	/**
-	 * Get information about dns zone in local nameservers.
-	 * Zone must be owned by reseller.
-	 *
-	 * @param domainname $domainname Name of the domain including top-level domain.
-	 * @param positiveInteger $customernumber customer number of reseller at netcup.
-	 * @param string $apikey Unique API key generated in customer control panel.
-	 * @param string $apisessionid Unique API session id created by login command.
-	 * @param clientrequestid $clientrequestid Id from client side. Can contain letters and numbers. Field is optional.
-	 * @return Responsemessage $responsemessage with information about result of the action like short and long resultmessages, message status, etc.
-	 */
-	public function infoDnsZone($domainname,$customernumber,$apikey,$apisessionid,$clientrequestid){
-		return self::_Call('infoDnsZone', func_get_args());
 	}
 }
 
