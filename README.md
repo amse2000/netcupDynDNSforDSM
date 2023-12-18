@@ -32,11 +32,11 @@ DNS-API netcup-hosted dynamic DNS php script for FRITZ!Box and Synology DSM
 * Username: `<username as defined in .env file>`
 * Password: `<password as definied in .env file>`
 
-* 
+
 ### DSM-Settings
 * Go to "Systemsteuerung" -> "Externer Zugriff" -> "DDNS" -> "Anpassen"
 * Choose Name for "Serviceanbieter" for example "Netcup"
-* Update-URL: `https://<url of your webspace>/update.php??user=__USERNAME__&password=__PASSWORD__&ipv4=__MYIP__&domain=__HOSTNAME__`
+* Update-URL: `https://<url of your webspace>/update.php?user=__USERNAME__&password=__PASSWORD__&ipv4=__MYIP__&domain=__HOSTNAME__`
   * only the url needs to be adjusted, the rest is automatically filled by your Diskstation DSM
   * http or https is possible if valid SSL certificate (e.g. Let's Encrypt)
 * Single Domain:
