@@ -172,6 +172,7 @@ final class Handler
         } else {
             $this->doLog('dns recordset NOT updated (no changes)');
         }
+        printf('[OK] %s', PHP_EOL); //DDNS of DSM seems to need "answer" from Service
 
         $logoutHandle = $dnsClient->logout(
             $this->config->getCustomerId(),
