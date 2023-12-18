@@ -1,7 +1,7 @@
 <?php
 
 error_reporting(-1);
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 ini_set('html_errors', 0);
 
 header('Content-Type: text/plain; charset=utf-8');
