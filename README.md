@@ -42,7 +42,8 @@ DNS-API netcup-hosted dynamic DNS php script for FRITZ!Box and Synology DSM
 * Single Domain:
   * Hostname: `<host record that is supposed to be updated>`
 * Multiple Domains:
-  * Hostname: `<first host record that is supposed to be updated>,<second host record that is supposed to be updated>,....`
+  * As DSM can only use a "Serviceanbieter" for one Domain (',' is not allowed for Hostname in DNS Input field) you may add separate "Serviceanbieter"s 
+with distinct names for each Domain
 * Benutzername/Email: `<username as defined in .env file>`
 * Passwort/Schlüssel: `<password as definied in .env file>`
 
